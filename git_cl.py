@@ -1268,7 +1268,7 @@ class Changelist(object):
     remote = '.'
     upstream_branch = _git_get_branch_config_value('merge', branch=branch)
 
-    if upstream_branch:
+    if upstream_branch and branch != upstream_branch.replace('refs/heads/', ''):
       remote = _git_get_branch_config_value('remote', branch=branch)
     else:
       upstream_branch = RunGit(['config', 'rietveld.upstream-branch'],
